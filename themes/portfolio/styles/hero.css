@@ -1,0 +1,173 @@
+/*
+    Styles for hero section of the theme
+*/
+
+.hero {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.hero .hero-heading {
+  font-size: 64px;
+  text-align: center;
+  width: 750px;
+  margin: auto;
+  padding: 50px 0 0 0;
+  font-weight: 500;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.button-group .button {
+  padding: 12px 30px;
+  border-radius: 100px;
+  outline: none;
+  border: 1px solid black;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color ease-in-out 0.1s;
+}
+
+.button-group .blue {
+  background: rgb(46, 91, 254);
+  color: white;
+  border: 1px solid rgb(46, 91, 254);
+}
+
+.button-group .blue:hover {
+  background-color: rgb(35, 78, 232);
+}
+
+.hero .hero-heading .gray,
+.projects .gray {
+  color: rgb(168, 168, 168);
+}
+
+.projects {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.projects .header-img {
+  border-radius: 20px;
+  object-fit: cover;
+  width: 100%;
+  height: 500px;
+}
+
+.projects h2 {
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.projects .desc {
+  color: gray;
+  font-weight: 400;
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+  width: 700px;
+  line-height: 1.2;
+}
+
+.projects .card-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.projects .card-group .card {
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 20px;
+  width: 400px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+.projects .card-group .card:hover {
+  border: 1px solid gray;
+}
+
+.projects .card-group .card p {
+  background-color: rgb(21, 69, 227);
+  color: white;
+  border-radius: 100px;
+  padding: 5px 10px;
+  font-size: 14px;
+  width: max-content;
+  word-wrap: break-word;
+}
+
+.projects .card-group .card h2 {
+  font-size: 24px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.projects .card-group .card .project-desc {
+  background-color: transparent;
+  color: black;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.exp {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.exp .exp-heading {
+  font-size: 36px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.exp .card {
+  margin-top: 25px;
+}
+
+.exp .card p {
+  color: gray;
+}
+
+.exp .project {
+  margin-top: 20px;
+  background: rgb(245, 245, 245);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.exp .project a {
+  font-size: 24px;
+  text-decoration: underline;
+  color: black;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 10px;
+}
+.exp .project .role {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.exp .project p {
+  color: rgb(105, 104, 104);
+}
+
+.exp .project .list {
+  padding-left: 15px;
+  margin-top: 10px;
+}

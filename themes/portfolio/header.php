@@ -1,25 +1,33 @@
+<?php
+/**
+ * Displays the header content for the page
+ */
+?>
 
-<header class="site-header">
-    <div class="container">
-        <div class="header-wrapper">
-            <div class="site-branding">
-                <a href="#" class="logo">
-                    <?php bloginfo('name'); ?>
-                </a>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php bloginfo('name'); ?></title>
+    <link rel="stylesheet" href="<?php get_template_directory_uri() ?>/style.css">
+    <?php wp_head() ?>
+</head>
+<body class="<?php body_class() ?>">
+    <header class="site-header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="site-branding">
+                    <a href="/" class="logo">
+                        <?php bloginfo('name'); ?>
+                    </a>
+                </div>
+                
+                <nav class="header-nav">
+                    <?php wp_nav_menu(array('theme_location' => 'primary menu')) ?>
+                </nav>
             </div>
-            
-            <nav class="header-nav">
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <span class="menu-icon"></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
         </div>
-    </div>
-</header>
+    </header>
+    

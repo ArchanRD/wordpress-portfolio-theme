@@ -1,0 +1,51 @@
+/*
+    Styles for navbar of the theme
+*/
+
+.site-header {
+  background-color: #ffffff;
+  border: 1px solid lightgray;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 15px 150px;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav ul {
+  display: flex;
+  list-style-type: none;
+  gap: 15px;
+}
+
+.header-nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.header-nav ul li a:hover {
+  text-decoration: underline;
+}
