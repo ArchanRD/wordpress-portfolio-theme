@@ -13,6 +13,8 @@
  * @since 1.0.0
  */
 
+use Kirki\Compatibility\Kirki;
+
 /**
  * Enqueues the main stylesheet for the portfolio theme.
  */
@@ -28,13 +30,11 @@ function enqueue_portofolio_styles()
  */
 function portfolio_customizer_register($wp_customize)
 {
-    /**
-     * Hero customizer
-     */
+    /** Hero customizer */
     $wp_customize->add_section('portfolio_hero_section', [
-        'title' => 'Hero Section',
+        'title' => 'Hero',
         'description' => 'Hero description',
-        'priority' => 30
+        'priority' => 20
     ]);
 
     $wp_customize->add_setting('portfolio_hero_text', [
@@ -50,12 +50,12 @@ function portfolio_customizer_register($wp_customize)
 
     /**
      * Primary Button Text Setting
-     * 
+     *
      * Controls the text displayed on the primary call-to-action button.
      * This is typically the main action you want visitors to take.
      */
     $wp_customize->add_setting('portfolio_hero_button1', [
-        'default' => 'Let\'s Talk',
+        'default' => "Let's Talk",
         'transport' => 'refresh'
     ]);
 
@@ -67,7 +67,7 @@ function portfolio_customizer_register($wp_customize)
 
     /**
      * Primary Button URL Setting
-     * 
+     *
      * Controls the destination URL when the primary button is clicked.
      * Default is '#' which links to the same page (no navigation).
      */
@@ -84,7 +84,7 @@ function portfolio_customizer_register($wp_customize)
 
     /**
      * Secondary Button Text Setting
-     * 
+     *
      * Controls the text displayed on the secondary call-to-action button.
      * This is typically used for alternative actions like viewing services.
      */
@@ -101,7 +101,7 @@ function portfolio_customizer_register($wp_customize)
 
     /**
      * Secondary Button URL Setting
-     * 
+     *
      * Controls the destination URL when the secondary button is clicked.
      * Default is '#' which links to the same page (no navigation).
      */
@@ -118,21 +118,89 @@ function portfolio_customizer_register($wp_customize)
 
     /**
      * Hero Image Setting
-     * 
+     *
      * Allows users to upload or select an image for the hero section.
      * This could be a background image or a featured image alongside the text.
      */
     $wp_customize->add_setting('portfolio_hero_image', [
-        'transport' => 'refresh',    // Refresh the page to see changes
-        'sanitize_callback' => 'esc_url_raw' // Sanitize as URL for security
+        'transport' => 'refresh',  // Refresh the page to see changes
+        'sanitize_callback' => 'esc_url_raw'  // Sanitize as URL for security
     ]);
-    
+
     // Using the WordPress image control for media library integration
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'portfolio_hero_image', [
         'label' => 'Image',
         'section' => 'portfolio_hero_section',
         'settings' => 'portfolio_hero_image'
     ]));
+
+    /** Add setting for projects section */
+    $wp_customize->add_section('portfolio_project_section', [
+        'title' => 'Projects',
+        'description' => 'Add the content for projects sections',
+        'priority' => 30
+    ]);
+
+    /** Project heading */
+    $wp_customize->add_setting('portfolio_project_heading', [
+        'default' => '',
+        'transport' => 'refresh'
+    ]);
+
+    $wp_customize->add_control('portfolio_project_heading', [
+        'label' => 'Heading',
+        'section' => 'portfolio_project_section',
+        'type' => 'text'
+    ]);
+
+    /** Project subheading */
+    $wp_customize->add_setting('portfolio_project_subheading', [
+        'default' => '',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('portfolio_project_subheading', [
+        'label' => 'Subheading',
+        'section' => 'portfolio_project_section',
+        'type' => 'text'
+    ]);
+
+    /** Initialize Kirki configuration */
+    Kirki::add_config('portfolio', [
+        'capability' => 'edit_theme_options',
+        'option_type' => 'theme_mod'
+    ]);
+
+    /** Create repeatable card field using Kirki */
+    Kirki::add_field('portfolio', [
+        'type' => 'repeater',
+        'label' => esc_html__('Projects', 'textdomain'),
+        'section' => 'portfolio_project_section',
+        'settings' => 'portfolio_project_cards',
+        'priority' => 40,
+        'row_label' => [
+            'type' => 'field',
+            'value' => esc_html__('Project', 'textdomain'),
+            'field' => 'title'
+        ],
+        'fields' => [
+            'tag' => [
+                'type' => 'text',
+                'label' => esc_html__('Tag', 'textdomain'),
+                'default' => '',
+            ],
+            'title' => [
+                'type' => 'text',
+                'label' => esc_html__('Title', 'textdomain'),
+                'default' => '',
+            ],
+            'description' => [
+                'type' => 'textarea',
+                'label' => esc_html__('Description', 'textdomain'),
+                'default' => '',
+            ],
+        ]
+    ]);
 }
 
 register_nav_menus(
