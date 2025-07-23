@@ -1,0 +1,47 @@
+.exp {
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+  
+  .exp .exp-heading {
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  .exp .card {
+    margin-top: 25px;
+  }
+  
+  .exp .card p {
+    color: gray;
+  }
+  
+  .exp .project {
+    margin-top: 20px;
+    background: rgb(245, 245, 245);
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .exp .project a {
+    font-size: 24px;
+    text-decoration: underline;
+    color: black;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .exp .project .role {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .exp .project p {
+    color: rgb(105, 104, 104);
+  }
+  
+  .exp .project .list {
+    padding-left: 15px;
+    margin-top: 10px;
+  }

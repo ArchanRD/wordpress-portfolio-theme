@@ -26,11 +26,32 @@ function enqueue_portofolio_styles()
 /**
  * Registers the theme customizer settings and controls.
  *
+ * This is the main customizer registration function that calls individual section setup functions.
+ *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function portfolio_customizer_register($wp_customize)
 {
-    /** Hero customizer */
+    // Initialize Kirki configuration
+    Kirki::add_config('portfolio', [
+        'capability' => 'edit_theme_options',
+        'option_type' => 'theme_mod'
+    ]);
+    
+    portfolio_customizer_hero_section($wp_customize);
+    portfolio_customizer_projects_section($wp_customize);
+    portfolio_customizer_experience_section($wp_customize);
+
+}
+
+/**
+ * Registers the Hero section customizer settings and controls.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function portfolio_customizer_hero_section($wp_customize)
+{
+    /** Hero section */
     $wp_customize->add_section('portfolio_hero_section', [
         'title' => 'Hero',
         'description' => 'Hero description',
@@ -133,8 +154,16 @@ function portfolio_customizer_register($wp_customize)
         'section' => 'portfolio_hero_section',
         'settings' => 'portfolio_hero_image'
     ]));
+}
 
-    /** Add setting for projects section */
+/**
+ * Registers the Projects section customizer settings and controls.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function portfolio_customizer_projects_section($wp_customize)
+{
+    /** Projects section */
     $wp_customize->add_section('portfolio_project_section', [
         'title' => 'Projects',
         'description' => 'Add the content for projects sections',
@@ -201,6 +230,100 @@ function portfolio_customizer_register($wp_customize)
             ],
         ]
     ]);
+}
+
+/**
+ * Registers the Experience section customizer settings and controls.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function portfolio_customizer_experience_section($wp_customize)
+{
+    $wp_customize->add_section('portfolio_experience_section', [
+        'title' => 'Experience',
+        'description' => 'Add your work experience',
+        'priority' => 50
+    ]);
+
+    // Heading
+    $wp_customize->add_setting('portfolio_experience_heading', [
+        'default' => '',
+        'transport' => 'refresh'
+    ]);
+
+    $wp_customize->add_control('portfolio_experience_heading', [
+         'label' => 'Heading',
+         'section' => 'portfolio_experience_section',
+         'type' => 'text'
+    ]);
+
+
+    // Job title
+    $wp_customize->add_setting('portfolio_experience_jobtitle', [
+        'default' => '',
+        'transport' => 'refresh'
+    ]);
+
+    $wp_customize->add_control('portfolio_experience_jobtitle', [
+        'label' => 'Job title',
+        'section' => 'portfolio_experience_section',
+        'type' => 'text'
+   ]);
+
+   // Job role
+   $wp_customize->add_setting('portfolio_experience_jobrole', [
+    'default' => '',
+    'transport' => 'refresh'
+    ]);
+
+    $wp_customize->add_control('portfolio_experience_jobrole', [
+        'label' => 'Job role',
+        'section' => 'portfolio_experience_section',
+        'type' => 'text'
+    ]);
+
+    /** Initialize Kirki configuration */
+    Kirki::add_config('portfolio', [
+        'capability' => 'edit_theme_options',
+        'option_type' => 'theme_mod'
+    ]);
+
+    /** Create repeatable card field using Kirki */
+    Kirki::add_field('portfolio', [
+        'type' => 'repeater',
+        'label' => esc_html__('Works', 'textdomain'),
+        'section' => 'portfolio_experience_section',
+        'settings' => 'portfolio_experience_works',
+        'priority' => 50,
+        'row_label' => [
+            'type' => 'field',
+            'value' => esc_html__('Work', 'textdomain'),
+            'field' => 'project-title'
+        ],
+        'fields' => [
+            'project-title' => [
+                'type' => 'text',
+                'label' => esc_html__('Project Name', 'textdomain'),
+                'default' => '',
+            ],
+            'role' => [
+                'type' => 'text',
+                'label' => esc_html__('Role', 'textdomain'),
+                'default' => '',
+            ],
+            'description' => [
+                'type' => 'textarea',
+                'label' => esc_html__('Description', 'textdomain'),
+                'default' => '',
+            ],
+            'highlights' => [
+                'type' => 'textarea',
+                'label' => esc_html__('Highlights', 'textdomain'),
+                'default' => '',
+            ],
+        ]
+    ]);
+
 }
 
 register_nav_menus(
